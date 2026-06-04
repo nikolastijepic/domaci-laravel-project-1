@@ -1,9 +1,5 @@
-<footer class="bg-slate-900 border-t border-slate-800">
-    <div class="max-w-6xl mx-auto px-6 py-6">
-
-        <p class="text-center text-slate-400 text-sm">
-            Copyright &copy; {{ date('Y') }}. All rights reserved.
-        </p>
-
-    </div>
-</footer>
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="mb-3 mb-md-0 text-secondary">Copyright &copy; {{ date('Y') }}.</p>
+    </footer>
+</div>

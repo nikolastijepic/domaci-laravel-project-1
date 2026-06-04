@@ -1,23 +1,24 @@
-<nav class="bg-slate-900 border-b border-slate-800 shadow-sm">
-    <div class="max-w-6xl mx-auto px-6">
-        <div class="flex justify-center gap-8 py-5">
-
-            <a href="/" class="text-slate-300 hover:text-blue-400 transition">
-                Home
-            </a>
-
-            <a href="/shop" class="text-slate-300 hover:text-blue-400 transition">
-                Shop
-            </a>
-
-            <a href="/contact" class="text-slate-300 hover:text-blue-400 transition">
-                Contact
-            </a>
-
-            <a href="/about" class="text-slate-300 hover:text-blue-400 transition">
-                About
-            </a>
-
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+        <a class="navbar-brand" href="/">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarNav">
+            <ul class="navbar-nav gap-3">
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('shop') ? 'active' : '' }}" href="/shop">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('about') ? 'active' : '' }}" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" href="/contact">Contact</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>

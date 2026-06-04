@@ -5,6 +5,6 @@
 @endsection
 
 @section('pageContent')
-<p class="flex justify-center my-5">Trenutno vreme je {{date('H:i:s')}}</p>
+<p class="d-flex justify-content-center mt-3">Trenutno vreme je {{date('H:i:s')}}</p>
 @endsection
 
