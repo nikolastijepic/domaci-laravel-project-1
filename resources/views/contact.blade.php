@@ -24,7 +24,7 @@
                     <button type="submit" class="btn btn-primary">Send Message</button>
                 </form>
                 <div class="d-flex justify-content-center mt-4">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38108.38469859964!2d20.41677687675514!3d44.80239622280412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a700ca7258e8f%3A0xbe11391a6fc0344c!2sChurch%20of%20Saint%20Sava!5e1!3m2!1sen!2sba!4v1780589513530!5m2!1sen!2sba" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d38108.38469859964!2d20.41677687675514!3d44.80239622280412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a700ca7258e8f%3A0xbe11391a6fc0344c!2sChurch%20of%20Saint%20Sava!5e1!3m2!1sen!2sba!4v1780589513530!5m2!1sen!2sba" width="850" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

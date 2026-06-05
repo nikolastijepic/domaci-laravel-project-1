@@ -5,5 +5,14 @@
 @endsection
 
 @section('pageContent')
-<p class="d-flex justify-content-center mt-3">Ovo je shop stranica</p>
+
+    @foreach($products as $product)
+        <p class="d-flex justify-content-center mt-3">
+            {{ $product }}
+            @if(in_array($product, $productsOnSale))
+                - {{$saleMessage}}
+            @endif
+        </p>
+    @endforeach
+
 @endsection
