@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomepageController extends Controller
 {
     public function index()
     {
-        $currentTime = date('H:i:s');
-        $hour = date('h');
+        $products = Product::latest('id')
+            ->take(6)
+            ->get();
 
-        return view('homepage', compact('currentTime', 'hour'));
+        return view('homepage', compact('products'));
     }
 }
