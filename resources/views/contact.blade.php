@@ -8,7 +8,13 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
-                <form>
+                <form method="POST" action="/send-contact">
+                    @if($errors->any())
+                        <p>Greska: {{ $errors->first() }}</p>
+                    @endif
+
+                    @csrf
+
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
                         <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
