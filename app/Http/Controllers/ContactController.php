@@ -15,7 +15,7 @@ class ContactController extends Controller
     public function getAllContacts()
     {
         $allContacts = Contact::all();
-        return view('allContacts', compact('allContacts'));
+        return view('all-contacts', compact('allContacts'));
     }
 
     public function sendContact(Request $request)
@@ -31,6 +31,20 @@ class ContactController extends Controller
             'subject' => $request->subject,
             'message' => $request->message
         ]);
+    }
+
+    public function deleteContact($contact)
+    {
+       $singleContact = Contact::where(['id' => $contact])->first();
+
+        if ($singleContact === null)
+        {
+            die("Ovaj kontakt ne postoji!");
+        }
+
+        $singleContact->delete();
+
+        return redirect()->back();
     }
 }
 

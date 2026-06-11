@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout-admin')
 
 @section('pageTitle')
     Add Product - Admin

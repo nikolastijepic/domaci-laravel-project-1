@@ -9,13 +9,13 @@ class ProductController extends Controller
 {
     public function index()
     {
+        return view('add-products');
+    }
+    public function getAllProducts()
+    {
         $products = Product::all();
 
-        return view('products', compact('products'));
-    }
-    public function create()
-    {
-       return view('add-products');
+        return view('all-products', compact('products'));
     }
 
     public function addProduct(Request $request)
@@ -35,5 +35,19 @@ class ProductController extends Controller
             'price' => $request->price,
             'image' => $request->image
         ]);
+    }
+
+    public function deleteProduct($product)
+    {
+        $singleProduct = Product::where(['id' => $product])->first();
+
+        if ($singleProduct === null)
+        {
+            die("Ovaj proizvod ne postoji!");
+        }
+
+        $singleProduct->delete();
+
+        return redirect()->back();
     }
 }
