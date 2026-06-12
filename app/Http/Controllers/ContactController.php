@@ -46,6 +46,42 @@ class ContactController extends Controller
 
         return redirect()->back();
     }
+
+    public function getContact($contact)
+    {
+        $singleContact = Contact::where(['id' => $contact])->first();
+
+        if ($singleContact === null)
+        {
+            die("Ovaj kontakt ne postoji!");
+        }
+
+        return view('edit-contact', compact('singleContact'));
+    }
+
+    public function editContact(Request $request, $contact)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'subject' => 'required|string',
+            'message' => 'required|string|min:5'
+        ]);
+
+        $singleContact = Contact::where(['id' => $contact])->first();
+
+        if ($singleContact === null)
+        {
+            die('Ovaj kontakt ne postoji!');
+        }
+
+        $singleContact->update([
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message
+        ]);
+
+        return redirect()->route('all.contacts');
+    }
 }
 
 

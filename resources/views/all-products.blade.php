@@ -24,11 +24,11 @@
                     <td class="fw-bold fs-5"> {{ $product->name }}</td>
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->amount }}</td>
-                    <td>{{ $product->price }} €</td>
+                    <td>{{ $product->price }} &euro;</td>
                     <td>{{ $product->image }}</td>
                     <td class="d-flex align-items-center gap-2">
-                        <a class="btn btn-primary">Edit</a>
-                        <a class="btn btn-danger" href="{{ route('admin.delete-product', $product->id) }}">Delete</a>
+                        <a class="btn btn-primary" href="{{ route('admin.product.edit', ['product' => $product->id]) }}">Edit</a>
+                        <a class="btn btn-danger" href="{{ route('admin.product.delete', ['product' => $product->id]) }}">Delete</a>
                     </td>
                 </tr>
             @endforeach

@@ -8,32 +8,36 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
-                <form method="POST" action="/admin/add-products">
-                    @if($errors->any())
-                        <p>Error: {{ $errors->first() }}</p>
-                    @endif
-
+                <form method="POST" action="{{ route('admin.product.add') }}">
                     @csrf
+
+                    <div>
+                        @if($errors->any())
+                            @foreach($errors->all() as $error)
+                                <p class="text-danger">{{ $error }}</p>
+                            @endforeach
+                        @endif
+                    </div>
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Product Name</label>
-                        <input type="text" name="name" class="form-control" id="name">
+                        <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}">
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" name="description" id="description" rows="5"></textarea>
+                        <textarea class="form-control" name="description" id="description" rows="5">{{ old('description') }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="amount" class="form-label">Amount</label>
-                        <input type="number" name="amount" class="form-control" id="amount">
+                        <input type="number" name="amount" class="form-control" id="amount" value="{{ old('amount') }}">
                     </div>
                     <div class="mb-3">
                         <label for="price" class="form-label">Price</label>
-                        <input type="number" step="0.01" name="price" class="form-control" id="price">
+                        <input type="number" step="0.01" name="price" class="form-control" id="price" value="{{ old('price') }}">
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Image</label>
-                        <input type="text" name="image" class="form-control" id="image">
+                        <input type="text" name="image" class="form-control" id="image" value="{{ old('image') }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Add Product</button>
                 </form>
