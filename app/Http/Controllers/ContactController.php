@@ -21,16 +21,13 @@ class ContactController extends Controller
 
     public function sendContact(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'subject' => 'required|string',
-            'message' => 'required|string|min:5']);
-
-        Contact::create([
-            'email' => $request->email,
-            'subject' => $request->subject,
-            'message' => $request->message
+        $validated = $request->validate([
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|min:3|max:100',
+            'message' => 'required|string|min:5|max:1000'
         ]);
+
+        Contact::create($validated);
     }
 
     public function deleteContact(Contact $contact)
@@ -47,17 +44,13 @@ class ContactController extends Controller
 
     public function editContact(Request $request, Contact $contact)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'subject' => 'required|string',
-            'message' => 'required|string|min:5'
+        $validated = $request->validate([
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|min:3|max:100',
+            'message' => 'required|string|min:5|max:1000'
         ]);
 
-        $contact->update([
-            'email' => $request->email,
-            'subject' => $request->subject,
-            'message' => $request->message
-        ]);
+        $contact->update($validated);
 
         return redirect()->route('all.contacts');
     }
