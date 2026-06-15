@@ -7,6 +7,13 @@
 @section('pageContent')
 
     <div class="container mt-4">
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
         <table class="table table-striped table-bordered">
             <thead>
             <tr>
@@ -20,9 +27,9 @@
             </thead>
             <tbody>
             @foreach($products as $product)
-                <tr>
+                <tr @if(session('new_product_id') === $product->id) class="table-success" @endif>
                     <td class="fw-bold fs-5"> {{ $product->name }}</td>
-                    <td>{{ $product->description }}</td>
+                    <td class="text-break">{{ $product->description }}</td>
                     <td>{{ $product->amount }}</td>
                     <td>{{ $product->price }} &euro;</td>
                     <td>{{ $product->image }}</td>

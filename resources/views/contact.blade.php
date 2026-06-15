@@ -12,9 +12,17 @@
                     @csrf
 
                     <div>
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
                         @if($errors->any())
                             @foreach($errors->all() as $error)
-                                <p class="text-danger">{{ $error }}</p>
+                                <div class="alert alert-danger">
+                                    {{ $error }}
+                                </div>
                             @endforeach
                         @endif
                     </div>

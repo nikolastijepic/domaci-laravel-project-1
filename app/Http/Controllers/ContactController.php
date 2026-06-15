@@ -28,6 +28,8 @@ class ContactController extends Controller
         ]);
 
         Contact::create($validated);
+
+        return redirect()->back()->with('success', 'Poruka je uspesno poslata.');
     }
 
     public function deleteContact(Contact $contact)

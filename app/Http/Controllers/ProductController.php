@@ -28,9 +28,11 @@ class ProductController extends Controller
             'image' => 'required|string',
             ]);
 
-        Product::create($validated);
+        $product = Product::create($validated);
 
-        return redirect()->route('admin.all.products');
+        return redirect()->route('admin.all.products')
+            ->with('success', 'Proizvod je uspesno dodat.')
+            ->with('new_product_id', $product->id);
     }
 
     public function deleteProduct(Product $product)

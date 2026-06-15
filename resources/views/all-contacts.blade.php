@@ -21,7 +21,7 @@
                 <tr>
                     <td>{{ $contact->email }}</td>
                     <td>{{ $contact->subject }}</td>
-                    <td>{{ $contact->message }}</td>
+                    <td class="text-break">{{ $contact->message }}</td>
                     <td class="d-flex align-items-center gap-2">
                         <a class="btn btn-primary" href="{{ route('admin.contact.edit', ['contact' => $contact->id]) }}">Edit</a>
                         <a class="btn btn-danger" href="{{ route('admin.contact.delete', ['contact' => $contact->id]) }}">Delete</a>
