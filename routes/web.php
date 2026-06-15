@@ -1,49 +1,54 @@
 <?php
 
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [\App\Http\Controllers\HomepageController::class, 'index']);
+Route::get('/', [HomepageController::class, 'index']);
 
-Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index']);
+Route::get('/shop', [ShopController::class, 'index']);
 
-Route::get('/contact', [\App\Http\Controllers\ContactController::class, 'index']);
+Route::get('/contact', [ContactController::class, 'index']);
 
 Route::view('/about', 'about');
 
-
-Route::post('/send-contact', [\App\Http\Controllers\ContactController::class, 'sendContact'])
+Route::post('/send-contact', [ContactController::class, 'sendContact'])
     ->name('contact.send');
 
-Route::get('/admin/all-contacts', [\App\Http\Controllers\ContactController::class, 'getAllContacts'])
-    ->name('all.contacts');
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/all-contacts', [ContactController::class, 'getAllContacts'])
+        ->name('all.contacts');
 
-Route::get('admin/delete-contact/{contact}', [\App\Http\Controllers\ContactController::class, 'deleteContact'])
-    ->name('admin.contact.delete');
+    Route::get('delete-contact/{contact}', [ContactController::class, 'deleteContact'])
+        ->name('admin.contact.delete');
 
-Route::get('/admin/edit-contact/{contact}', [\App\Http\Controllers\ContactController::class, 'getContact'])
-    ->name('admin.contact.edit');
+    Route::get('/edit-contact/{contact}', [ContactController::class, 'getContact'])
+        ->name('admin.contact.edit');
 
-Route::post('/admin/edit-contact/{contact}', [\App\Http\Controllers\ContactController::class, 'editContact'])
-    ->name('admin.contact.update');
+    Route::post('/edit-contact/{contact}', [ContactController::class, 'editContact'])
+        ->name('admin.contact.update');
 
 
-Route::get('/admin/add-products', [\App\Http\Controllers\ProductController::class, 'index']);
+    Route::get('/add-products', [ProductController::class, 'index']);
 
-Route::post('/admin/add-products', [\App\Http\Controllers\ProductController::class, 'addProduct'])
-    ->name('admin.product.add');
+    Route::post('/add-products', [ProductController::class, 'addProduct'])
+        ->name('admin.product.add');
 
-Route::get('/admin/all-products', [\App\Http\Controllers\ProductController::class, 'getAllProducts'])
-    ->name('admin.all.products');
+    Route::get('/all-products', [ProductController::class, 'getAllProducts'])
+        ->name('admin.all.products');
 
-Route::get('/admin/delete-product/{product}', [\App\Http\Controllers\ProductController::class, 'deleteProduct'])
-    ->name('admin.product.delete');
+    Route::get('/delete-product/{product}', [ProductController::class, 'deleteProduct'])
+        ->name('admin.product.delete');
 
-Route::get('/admin/edit-product/{product}', [\App\Http\Controllers\ProductController::class, 'getProduct'])
-    ->name('admin.product.edit');
+    Route::get('/edit-product/{product}', [ProductController::class, 'getProduct'])
+        ->name('admin.product.edit');
 
-Route::post('/admin/edit-product/{product}', [\App\Http\Controllers\ProductController::class, 'editProduct'])
-    ->name('admin.product.update');
+    Route::post('/edit-product/{product}', [ProductController::class, 'editProduct'])
+        ->name('admin.product.update');
+});
 
 //Route::get('/', function () {
 //    return view('welcome');
