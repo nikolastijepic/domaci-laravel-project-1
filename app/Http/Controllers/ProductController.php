@@ -39,50 +39,29 @@ class ProductController extends Controller
         return redirect()->route('admin.all.products');
     }
 
-    public function deleteProduct($product)
+    public function deleteProduct(Product $product)
     {
-        $singleProduct = Product::where(['id' => $product])->first();
-
-        if ($singleProduct === null)
-        {
-            die("Ovaj proizvod ne postoji!");
-        }
-
-        $singleProduct->delete();
+        $product->delete();
 
         return redirect()->back();
     }
 
-    public function getProduct($product)
+    public function getProduct(Product $product)
     {
-        $singleProduct = Product::where(['id' => $product])->first();
-
-        if ($singleProduct === null)
-        {
-            die("Ovaj proizvod ne postoji!");
-        }
-
-        return view('edit-product', compact('singleProduct'));
+       return view('edit-product', compact('product'));
     }
 
-    public function editProduct(Request $request, $product)
+    public function editProduct(Request $request, Product $product)
     {
         $request->validate([
-            'name' => 'required|string|min:3|unique:products,name,'.$product,
+            'name' => 'required|string|min:3|unique:products,name,'.$product->id,
             'description' => 'required|string|min:10',
             'amount' => 'required|integer|min:1',
             'price' => 'required|numeric|min:0.01',
             'image' => 'required|string',
         ]);
 
-        $singleProduct = Product::where(['id' => $product])->first();
-
-        if ($singleProduct === null)
-        {
-            die("Ovaj proizvod ne postoji!");
-        }
-
-        $singleProduct->update([
+        $product->update([
             'name' => $request->name,
             'description' => $request->description,
             'amount' => $request->amount,

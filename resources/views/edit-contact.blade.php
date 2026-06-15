@@ -8,7 +8,7 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-12 col-md-10 col-lg-8">
-                <form method="POST" action="{{ route('admin.contact.update', ['contact' => $singleContact->id]) }}">
+                <form method="POST" action="{{ route('admin.contact.update', ['contact' => $contact->id]) }}">
                     @csrf
 
                     <div>
@@ -21,15 +21,15 @@
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
-                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" value="{{ $singleContact->email }}">
+                        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" value="{{ $contact->email }}">
                     </div>
                     <div class="mb-3">
                         <label for="subject" class="form-label">Subject</label>
-                        <input type="text" name="subject" class="form-control" id="subject" value="{{ $singleContact->subject }}">
+                        <input type="text" name="subject" class="form-control" id="subject" value="{{ $contact->subject }}">
                     </div>
                     <div class="mb-3">
                         <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" name="message" id="message" rows="5">{{ $singleContact->message }}</textarea>
+                        <textarea class="form-control" name="message" id="message" rows="5">{{ $contact->message }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>

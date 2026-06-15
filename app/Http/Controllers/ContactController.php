@@ -15,6 +15,7 @@ class ContactController extends Controller
     public function getAllContacts()
     {
         $allContacts = Contact::all();
+
         return view('all-contacts', compact('allContacts'));
     }
 
@@ -25,7 +26,6 @@ class ContactController extends Controller
             'subject' => 'required|string',
             'message' => 'required|string|min:5']);
 
-        echo "Email: " . $request->input('email') . " Subject: " . $request->input('subject') . " Message: " . $request->input('message');
         Contact::create([
             'email' => $request->email,
             'subject' => $request->subject,
@@ -33,33 +33,19 @@ class ContactController extends Controller
         ]);
     }
 
-    public function deleteContact($contact)
+    public function deleteContact(Contact $contact)
     {
-       $singleContact = Contact::where(['id' => $contact])->first();
-
-        if ($singleContact === null)
-        {
-            die("Ovaj kontakt ne postoji!");
-        }
-
-        $singleContact->delete();
+        $contact->delete();
 
         return redirect()->back();
     }
 
-    public function getContact($contact)
+    public function getContact(Contact $contact)
     {
-        $singleContact = Contact::where(['id' => $contact])->first();
-
-        if ($singleContact === null)
-        {
-            die("Ovaj kontakt ne postoji!");
-        }
-
-        return view('edit-contact', compact('singleContact'));
+        return view('edit-contact', compact('contact'));
     }
 
-    public function editContact(Request $request, $contact)
+    public function editContact(Request $request, Contact $contact)
     {
         $request->validate([
             'email' => 'required|email',
@@ -67,14 +53,7 @@ class ContactController extends Controller
             'message' => 'required|string|min:5'
         ]);
 
-        $singleContact = Contact::where(['id' => $contact])->first();
-
-        if ($singleContact === null)
-        {
-            die('Ovaj kontakt ne postoji!');
-        }
-
-        $singleContact->update([
+        $contact->update([
             'email' => $request->email,
             'subject' => $request->subject,
             'message' => $request->message
@@ -83,5 +62,3 @@ class ContactController extends Controller
         return redirect()->route('all.contacts');
     }
 }
-
-

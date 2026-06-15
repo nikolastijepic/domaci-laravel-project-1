@@ -17,5 +17,13 @@
                 </li>
             </ul>
         </div>
+        <div class="d-flex align-items-center gap-2">
+            <label for="themeSwitch" class="m-0">
+                <i id="themeIcon" class="bi bi-sun-fill fs-5"></i>
+            </label>
+            <div class="form-check form-switch m-0">
+                <input class="form-check-input" type="checkbox" id="themeSwitch">
+            </div>
+        </div>
     </div>
 </nav>

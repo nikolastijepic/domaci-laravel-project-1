@@ -13,6 +13,6 @@ class HomepageController extends Controller
             ->take(6)
             ->get();
 
-        return view('homepage', compact('products'));
+        return view('welcome', compact('products'));
     }
 }
